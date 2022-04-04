@@ -35323,6 +35323,8 @@ with pkgs;
     buildGoModule = buildGo118Module;
   };
 
+  whoogle-search = callPackage ../applications/networking/whoogle-search { };
+
   wifi-password = callPackage ../os-specific/darwin/wifi-password {};
 
   qubes-core-vchan-xen = callPackage ../applications/qubes/qubes-core-vchan-xen {};

@@ -50,6 +50,14 @@
       </listitem>
       <listitem>
         <para>
+          <link xlink:href="https://github.com/benbusby/whoogle-search">whoogle-search</link>,
+          a self-hosted, ad-free, privacy-respecting metasearch engine.
+          Available as
+          <link xlink:href="options.html#opt-services.whoogle-search.enable">services.whoogle-search</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link xlink:href="https://github.com/leetronics/infnoise">infnoise</link>,
           a hardware True Random Number Generator dongle. Available as
           <link xlink:href="options.html#opt-services.infnoise.enable">services.infnoise</link>.
