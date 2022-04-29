@@ -85,8 +85,6 @@ in
 
       preStart = ''
         mkdir -m 0750 -p ${cfg.dataDir}
-        find ${cfg.dataDir} -type d -exec chmod -v 750 {} \;
-        find ${cfg.dataDir} -type f -exec chmod -v 640 {} \;
         cp -r ${whoogle-search}/${pkgs.python3.sitePackages}/app/static_runtime ${cfg.dataDir}/static
         chown -R ${cfg.user}:${cfg.group} ${cfg.dataDir}
       '';
