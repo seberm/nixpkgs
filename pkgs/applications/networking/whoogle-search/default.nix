@@ -13,7 +13,7 @@ python3.pkgs.buildPythonApplication rec {
 
   # FIXME: Is it possible to specify dataDir from service configuration here?
   postInstall = ''
-    mv $out/${python3.sitePackages}/app/static $out/${python3.sitePackages}/app/static_bck
+    mv $out/${python3.sitePackages}/app/static $out/${python3.sitePackages}/app/static_runtime
     ln -s /var/lib/whoogle-search/static $out/${python3.sitePackages}/app/static
   '';
 
