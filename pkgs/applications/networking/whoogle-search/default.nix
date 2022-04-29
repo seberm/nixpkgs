@@ -11,9 +11,15 @@ python3.pkgs.buildPythonApplication rec {
     hash = "sha256-RNmHo0SUHrYGNFgKBncpszNmjW0imqxhpnH+LS/oEK0=";
   };
 
+  postInstall = ''
+    #mkdir -m 0750 -p /var/lib/whoogle-search/build
+    rm -rvf $out/${python3.sitePackages}/app/static/build
+    ln -s /var/lib/whoogle-search/build $out/${python3.sitePackages}/app/static/build
+  '';
+
   patches = [
     # Fix static files path for templates
-    ./fix-template-paths.patch
+    #./fix-template-paths.patch
   ];
 
   postPatch = ''
