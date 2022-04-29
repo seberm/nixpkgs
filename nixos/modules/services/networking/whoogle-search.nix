@@ -84,8 +84,8 @@ in
       path = [ whoogle-search ];
 
       preStart = ''
-        mkdir -m 0750 -p ${cfg.dataDir}
-        cp -r ${whoogle-search}/${pkgs.python3.sitePackages}/app/static ${cfg.dataDir}/
+        mkdir -m 0750 -p ${cfg.dataDir}/build
+        #cp -r ${whoogle-search}/${pkgs.python3.sitePackages}/app/static ${cfg.dataDir}/
         find ${cfg.dataDir} -type d -exec chmod -v 750 {} \;
         find ${cfg.dataDir} -type f -exec chmod -v 640 {} \;
         chown -R ${cfg.user}:${cfg.group} ${cfg.dataDir}
