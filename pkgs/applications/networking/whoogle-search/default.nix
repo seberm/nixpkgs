@@ -11,16 +11,11 @@ python3.pkgs.buildPythonApplication rec {
     hash = "sha256-RNmHo0SUHrYGNFgKBncpszNmjW0imqxhpnH+LS/oEK0=";
   };
 
+  # FIXME: Is it possible to specify dataDir from service configuration here?
   postInstall = ''
-    #mkdir -m 0750 -p /var/lib/whoogle-search/build
     mv $out/${python3.sitePackages}/app/static $out/${python3.sitePackages}/app/static_bck
     ln -s /var/lib/whoogle-search/static $out/${python3.sitePackages}/app/static
   '';
-
-  patches = [
-    # Fix static files path for templates
-    #./fix-template-paths.patch
-  ];
 
   postPatch = ''
     # Remove the version pinning
@@ -67,16 +62,6 @@ EOF
     stem
     waitress
   ];
-
-  #checkInputs = with python3.pkgs; [
-  #  python-dateutil
-  #  pytestCheckHook
-  #];
-
-  #disabledTestPaths = [
-  #  "test/test_results.py"
-  #  "test/test_routes.py"
-  #];
 
   # Disable tests because they require network connection
   doCheck = false;

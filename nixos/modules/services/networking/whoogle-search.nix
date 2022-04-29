@@ -93,7 +93,6 @@ in
 
       environment = {
         CONFIG_VOLUME = "${cfg.dataDir}";
-      #  STATIC_FOLDER = "${cfg.dataDir}/static";
       };
 
       serviceConfig = mkMerge [
