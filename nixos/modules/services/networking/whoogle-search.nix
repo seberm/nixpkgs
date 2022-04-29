@@ -91,10 +91,10 @@ in
         chown -R ${cfg.user}:${cfg.group} ${cfg.dataDir}
       '';
 
-      environment = {
-        CONFIG_VOLUME = "${cfg.dataDir}";
-        STATIC_FOLDER = "${cfg.dataDir}/static";
-      };
+      #environment = {
+      #  CONFIG_VOLUME = "${cfg.dataDir}";
+      #  STATIC_FOLDER = "${cfg.dataDir}/static";
+      #};
 
       serviceConfig = mkMerge [
         {
