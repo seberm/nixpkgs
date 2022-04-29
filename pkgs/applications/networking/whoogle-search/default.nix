@@ -13,8 +13,8 @@ python3.pkgs.buildPythonApplication rec {
 
   postInstall = ''
     #mkdir -m 0750 -p /var/lib/whoogle-search/build
-    rm -rvf $out/${python3.sitePackages}/app/static/build
-    ln -s /var/lib/whoogle-search/build $out/${python3.sitePackages}/app/static/build
+    mv $out/${python3.sitePackages}/app/static $out/${python3.sitePackages}/app/static_bck
+    ln -s /var/lib/whoogle-search/static $out/${python3.sitePackages}/app/static
   '';
 
   patches = [
