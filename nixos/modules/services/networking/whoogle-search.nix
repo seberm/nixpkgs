@@ -12,18 +12,6 @@ in
 
       enable = mkEnableOption "whoogle-search service";
 
-      user = mkOption {
-        type = types.str;
-        default = "whoogle-search";
-        description = "The user as which to run whoogle-search daemon.";
-      };
-
-      group = mkOption {
-        type = types.str;
-        default = "whoogle-search";
-        description = "The group as which to run whoogle-search daemon.";
-      };
-
       port = mkOption {
         type = types.port;
         default = 5000;
@@ -66,22 +54,6 @@ in
 
   config = mkIf cfg.enable {
 
-    users.users = mkIf (cfg.user == "whoogle-search") {
-      whoogle-search = {
-        group = cfg.group;
-        uid = config.ids.uids.whoogle-search;
-        home = cfg.dataDir;
-        description = "Whoogle Search daemon user";
-      };
-    };
-
-    users.groups = mkIf (cfg.group == "whoogle-search") {
-      whoogle-search = {
-        gid = config.ids.gids.whoogle-search;
-      };
-    };
-
-
     systemd.services.whoogle-search = {
       description = "Whoogle Search";
       wantedBy = [ "multi-user.target" ];
@@ -103,8 +75,7 @@ in
       serviceConfig = mkMerge [
         {
           Type = "simple";
-          User = cfg.user;
-          Group = cfg.group;
+          DynamicUser = true;
           ExecStart = "${pkgs.whoogle-search}/bin/whoogle-search"
             + " --host ${cfg.listenAddress}"
             + " --port ${builtins.toString cfg.port}"
