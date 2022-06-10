@@ -1,5 +1,6 @@
 { lib
 , python3
+, nixosTests
 }:
 
 python3.pkgs.buildPythonApplication rec {
@@ -42,8 +43,12 @@ EOF
     waitress
   ];
 
-  # Disable tests because they require network connection
   doCheck = false;
+
+  passthru.tests = {
+    inherit (nixosTests) whoogle-search;
+  };
+
 
   meta = with lib; {
     description = "A self-hosted, ad-free, privacy-respecting metasearch engine";
