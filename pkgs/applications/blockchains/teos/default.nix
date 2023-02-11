@@ -81,5 +81,9 @@ in
       "--skip=retrier::tests::test_retry_tower_rejected"
       "--skip=retrier::tests::test_retry_tower_subscription_error"
     ];
+
+    passthru.tests = {
+      teosWatchTowerPluginTests = teos-watchtower-plugin.overrideAttrs (_: { doCheck = false; });
+    };
   };
 }
