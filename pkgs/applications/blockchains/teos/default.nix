@@ -69,21 +69,7 @@ in
       description = "A Lightning watchtower plugin for clightning";
     };
 
-    checkFlags = lib.optionals stdenv.isLinux [
-      "--skip=retrier::tests::test_manage_retry_misbehaving"
-      "--skip=retrier::tests::test_manage_retry_reachable"
-      "--skip=retrier::tests::test_manage_retry_rejected"
-      "--skip=retrier::tests::test_manage_retry_subscription_error"
-    ] ++ lib.optionals (stdenv.isLinux && stdenv.isAarch64) [
-      "--skip=retrier::tests::test_manage_retry_while_idle"
-    ] ++ lib.optionals (stdenv.isDarwin && stdenv.isAarch64) [
-      "--skip=retrier::tests::test_manage_retry_unreachable"
-      "--skip=retrier::tests::test_retry_tower_rejected"
-      "--skip=retrier::tests::test_retry_tower_subscription_error"
-    ];
+    __darwinAllowLocalNetworking = true;
 
-    passthru.tests = {
-      teosWatchTowerPluginTests = teos-watchtower-plugin.overrideAttrs (_: { doCheck = false; });
-    };
   };
 }
